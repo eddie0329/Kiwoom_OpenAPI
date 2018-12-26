@@ -16,7 +16,7 @@ from PyQt5.QAxContainer import *
 #    왜 저 답안나오는 MS기술을 지금도 쓰는지.. 그문젠거같은데 모르겠고
 #    님 컴터에서는 되는지 보고 저 위에 공식 개발문서를 잘 읽어보셈
 #    난 여기서 더 진행은 힘들고 요즘은 다 이런문제때문에 웹 API 로 하는데...
-#    키움증권 병신인듯...지금 시대가 어느땐데... 
+#    키움증권 병신인듯...지금 시대가 어느땐데...
 
 class MyWindow(QMainWindow):
     def __init__(self):
@@ -24,7 +24,8 @@ class MyWindow(QMainWindow):
         self.setWindowTitle("PyStock")
         self.setGeometry(300, 300, 300, 150)
 
-        self.kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
+        self.kiwoom = QAxWidget()
+        self.kiwoom.setControl("KHOPENAPI.KHOpenAPICtrl.1")
         self.kiwoom.dynamicCall("CommConnect()")
 
         self.text_edit = QTextEdit(self)
