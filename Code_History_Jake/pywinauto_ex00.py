@@ -1,3 +1,4 @@
+#관리자 권한으로 실행시켜야함
 from pywinauto import application
 from pywinauto import timings
 import time
@@ -6,7 +7,7 @@ import os
 app = application.Application()
 app.start("C:/KiwoomHero4/bin/nkstarter.exe")
 
-title = "영웅문 Login"
+title = "영웅문4 Login"
 dlg = timings.WaitUntilPasses(20, 0.5, lambda: app.window_(title=title))
 
 #로그인 비밀번호
