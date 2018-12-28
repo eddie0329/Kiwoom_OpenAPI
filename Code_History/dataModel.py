@@ -1,3 +1,4 @@
+#pyqt
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QAxContainer import *
@@ -5,22 +6,32 @@ from PyQt5.QtGui import *
 
 class DataModel:
     def __init__(self):
-        print("데이터 모델입니다.")
-        self.kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
-        self.login()
+        self.myLoginInfo = None
+        self.itemList = []
 
-        #kiwoom Open API event Trigger
-        self.kiwoom.OnEventConnect.connect(self.event_connect)
+    class LoginInfo:
+        #store login_info
+        def __init__(self, accCnt, accList, userId, userName, keyBSEC, firew, serverGubun):
+            self.accCnt = accCnt
+            self.accList = accList
+            self.userId = userId
+            self.userName = userName
+            self.keyBSEC = keyBSEC
+            self.firew = firew
+            self.serverGubun = serverGubun
 
-    def login(self):
-        self.kiwoom.dynamicCall("CommConnect()")
+        #server gubun
+        def getServerGubun(self):
+            if self.serverGubun == "1":
+                return "모의투자"
+            else:
+                return "실서버"
 
-    def event_connect(self, nErrCode):
-        if nErrCode == 0:
-            print("로그인 성공")
-        elif nErrCode == 100:
-            print("사용자 정보교환 실패")
-        elif nErrCode == 101:
-            print("서버접속 실패")
-        elif nErrCode == 102:
-            print("버전처리 실패")
+    class ItemInfo:
+        def __init__(self, itemCode, itemName):
+            self.itemCode = itemCode
+            self.itemName = itemName
+
+
+
+
